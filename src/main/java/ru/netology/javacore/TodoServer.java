@@ -5,7 +5,6 @@ import com.google.gson.Gson;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class TodoServer {
     private int port = 8989;
@@ -37,14 +36,15 @@ public class TodoServer {
                     Gson gson = new Gson();
                     TaskManager taskManager = gson.fromJson(json, TaskManager.class);
 
-                    switch (taskManager.type) {
-                        case ADD:
-                            todos.addTask(taskManager.task);
-                            break;
-                        case REMOVE:
-                            todos.removeTask(taskManager.task);
-                            break;
-                    }
+                        switch (taskManager.type) {
+                            case ADD:
+                                todos.addTask(taskManager.task);
+                                break;
+                            case REMOVE:
+                                todos.removeTask(taskManager.task);
+                                break;
+                        }
+
                     out.println(todos.getAllTasks());
                     System.out.println(taskManager);
 

@@ -1,7 +1,6 @@
 package ru.netology.javacore;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Todos {
     private static final int MAX_TASKS = 7;
@@ -12,19 +11,20 @@ public class Todos {
     }
 
     public void addTask(String task) {
-        this.allTasks.add(task);
+        if (isMaxNumberOfTasks()) {
+            this.allTasks.add(task);
+        } else {
+            System.out.println("You already have a lot of tasks");
+        }
+
     }
 
     public void removeTask(String task) {
         this.allTasks.remove(task);
     }
 
-    private boolean maxNumberOfTasks(String task) {
-        if (allTasks.size() < MAX_TASKS) {
-            allTasks.add(task);
-            return true;
-        }
-        return false;
+    private boolean isMaxNumberOfTasks() {
+        return allTasks.size() < MAX_TASKS;
     }
 
     public String getAllTasks() {
